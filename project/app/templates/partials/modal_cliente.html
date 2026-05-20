@@ -1,0 +1,74 @@
+<div
+  id="modal-cliente"
+  class="modal-overlay fixed inset-0 z-50 hidden items-center justify-center bg-black/60 px-4 backdrop-blur-sm"
+>
+  <div class="modal-panel w-full max-w-md rounded-2xl border border-[#334155] bg-[#1e293b] p-6 shadow-2xl shadow-black/40">
+    <div class="mb-5 flex items-center justify-between">
+      <div>
+        <h2 class="text-lg font-semibold text-[#f1f5f9]">Novo cliente</h2>
+        <p class="mt-0.5 text-xs text-[#94a3b8]">Token → buscar contas → escolher conta → salvar</p>
+      </div>
+      <button
+        type="button"
+        class="close-modal flex h-9 w-9 items-center justify-center rounded-lg text-[#94a3b8] transition-colors hover:bg-[#334155]/50 hover:text-[#f1f5f9]"
+        data-target="modal-cliente"
+        aria-label="Fechar"
+      >✕</button>
+    </div>
+    <form id="form-cliente" class="space-y-4">
+      <div>
+        <label for="nome" class="mb-1.5 block text-xs font-medium uppercase tracking-wide text-[#94a3b8]">Nome *</label>
+        <input
+          id="nome"
+          name="nome"
+          type="text"
+          class="w-full rounded-xl border border-[#334155] bg-[#0f172a] px-4 py-2.5 text-sm text-[#f1f5f9] outline-none ring-0 transition-all placeholder:text-[#64748b] focus:border-green-500/50 focus:ring-2 focus:ring-green-500/20"
+          required
+        >
+      </div>
+      <div>
+        <label for="access_token" class="mb-1.5 block text-xs font-medium uppercase tracking-wide text-[#94a3b8]">Access Token da Meta *</label>
+        <input
+          id="access_token"
+          name="access_token"
+          type="password"
+          autocomplete="off"
+          placeholder="Cole o token (ads_read)"
+          class="w-full rounded-xl border border-[#334155] bg-[#0f172a] px-4 py-2.5 text-sm text-[#f1f5f9] outline-none placeholder:text-[#64748b] focus:border-green-500/50 focus:ring-2 focus:ring-green-500/20"
+          required
+        >
+        <p class="mt-1.5 text-[11px] text-[#64748b]">O token do .env <strong>não</strong> é usado — só o informado aqui.</p>
+      </div>
+      <div>
+        <button
+          type="button"
+          id="btn-buscar-contas-meta"
+          class="w-full rounded-xl border border-sky-500/40 bg-sky-500/10 px-4 py-2.5 text-sm font-semibold text-sky-300 transition hover:bg-sky-500/20"
+        >
+          Buscar contas de anúncios deste token
+        </button>
+        <p id="meta-contas-feedback" class="mt-2 hidden text-xs"></p>
+      </div>
+      <div>
+        <label for="meta_account_id" class="mb-1.5 block text-xs font-medium uppercase tracking-wide text-[#94a3b8]">Conta de anúncios *</label>
+        <select
+          id="meta_account_id"
+          name="meta_account_id"
+          class="w-full rounded-xl border border-[#334155] bg-[#0f172a] px-4 py-2.5 text-sm text-[#f1f5f9] outline-none focus:border-green-500/50 focus:ring-2 focus:ring-green-500/20"
+          required
+          disabled
+        >
+          <option value="">Primeiro busque as contas pelo token</option>
+        </select>
+      </div>
+      <div class="flex justify-end gap-2 pt-2">
+        <button
+          type="button"
+          class="close-modal rounded-xl border border-[#334155] px-4 py-2.5 text-sm font-medium text-[#94a3b8] transition-all hover:border-[#475569] hover:bg-[#0f172a] hover:text-[#f1f5f9]"
+          data-target="modal-cliente"
+        >Cancelar</button>
+        <button type="submit" class="btn-submit rounded-xl bg-green-500 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-green-500/20 transition hover:bg-green-400">Salvar</button>
+      </div>
+    </form>
+  </div>
+</div>
