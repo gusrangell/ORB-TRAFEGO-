@@ -227,12 +227,41 @@ def _extract_leads(actions):
     if not actions:
         return 0
 
+    action_map = {}
+
     for action in actions:
-        if action.get("action_type") == "lead":
-            return int(float(action.get("value", 0)))
+        action_type = action.get("action_type")
+        value = action.get("value", 0)
+
+        if not action_type:
+            continue
+     
+        try:
+            action_map[action_type] = int(float(value))
+        except (TypeError, ValueError):
+            action_map[action_type] = 0
+
+    print("ACTIONS META MAP:", action_map)
+
+    priority_action_types = [   
+        "onsite_conversion.messaging_conversation_started_7d",
+        "messaging_conversation_started_7d",
+        "onsite_conversion.messaging_first_reply",
+        "onsite_conversion.messaging_lead",
+        "lead",
+        "onsite_conversion.lead",
+        "onsite_conversion.lead_grouped",
+        "offsite_conversion.fb_pixel_lead",
+        "leadgen_grouped",
+        "complete_registration",
+        "submit_application",
+    ]
+
+    for action_type in priority_action_types:
+        if action_type in action_map:
+            return action_map[action_type]
 
     return 0
-
 
 def _parse_decimal(value):
     if value is None or value == "":
